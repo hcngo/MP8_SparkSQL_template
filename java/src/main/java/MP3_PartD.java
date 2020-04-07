@@ -109,9 +109,10 @@ public final class MP3_PartD {
      */
 
     // Dataset/Spark SQL API
+    int top = 3;
     df.createOrReplaceTempView("gbooks");
-    Dataset<Row> df2 = spark.sql("select word, count(1) from gbooks group by word order by count(1) DESC limit 3");
-    df2.show();
+    Dataset<Row> df2 = spark.sql("select word, count(1) from gbooks group by word order by count(1) DESC");
+    df2.show(3);
 
     spark.stop();
     sc.stop();
